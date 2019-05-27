@@ -50,6 +50,19 @@ export const Mixin =  {
         }       
         return ret
     },
+    get_complete_name(value){
+        var items =[];
+        var ret = 0;
+        items.push({ id : 0, name : '未完了' })
+        items.push({ id : 1, name : '完了済' })
+        items.forEach( function (item) {
+            if(item.id == value){
+                ret = item.name
+//                console.log( ret );
+            }
+        });
+        return ret
+    },
     test_func(){
         return 'ABC'
     },

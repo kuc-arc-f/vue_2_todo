@@ -6,6 +6,10 @@
             <h1 class="" style="font-size: 42px;">&nbsp;{{ item.title }}
             </h1>
             <p>date:&nbsp; {{ item.date_str }}</p>
+            <div v-if="complete_name">
+                <hr />
+                <h3 style="color: green; ">[ {{ complete_name }} ]</h3>
+            </div>
             <hr />
             <div class="entry-content">
                 <div id="post_item" v-html="item.content"></div>
@@ -29,6 +33,7 @@ export default {
     created() {
         this.database = firebase.firestore()
         this.TBL_BLOGS = this.sysConst.TBL_BLOGS;
+        // get_complete_name
     },
     data: function( ) {
         var itemDat = {title : '', content : ''}
@@ -38,6 +43,7 @@ export default {
             updated: false,
             baseUrl : '',
             TBL_BLOGS : '',
+            complete_name : '',
         }
     },
     mounted: function() {
@@ -55,6 +61,8 @@ export default {
                 dat.date_str = dt_str
                 dat.content = marked(dat.content)
                 self.item =  dat
+                self.complete_name = self.get_complete_name(dat.complete)
+                console.log(self.complete_name)
             }).catch(function(error) {
                 console.log("Error getting document:", error);
             })            

@@ -8,6 +8,11 @@
         </div>
         <!-- -->        
         <h1>Todos - edit</h1>
+        <br />
+        <div class="form-group" v-if="complete_name">
+            <h3 style="color: green; ">[ {{ complete_name }} ]</h3>
+        </div>
+        <hr />      
         <div class="form-group">
             <label for="TopicTitle">タイトル</label>
             <input type="text" class="form-control" id="title" v-model="title" >
@@ -53,6 +58,7 @@ export default {
             page_id: 0,
             message : '',
             TBL_BLOGS : '',
+            complete_name : '',
         }
     },
     mounted: function() {
@@ -68,6 +74,7 @@ export default {
                 self.title = dat.title
                 self.content = dat.content
                 self.complete = dat.complete
+                self.complete_name = self.get_complete_name(dat.complete)
             }).catch(function(error) {
                 console.log("Error getting document:", error);
             })            
