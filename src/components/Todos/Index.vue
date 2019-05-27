@@ -27,12 +27,13 @@
                 </li>
                 </ul>              
             </div>
-
             <!-- -->
             <table class="table">
             <thead>
             <tr>
+                <!--
                 <th scope="col">id</th>
+                -->
                 <th scope="col">title</th>
                 <th scope="col">date</th>
                 <th scope="col">action</th>
@@ -40,7 +41,6 @@
             </thead>
             <tbody v-for="blog in blogs" v-bind:key="blog.id">
             <tr>
-                <td>{{ blog.id }}</td>
                 <td>
                     <h3>
                     <router-link :to="'/todos/show/' + blog.id" >{{ blog.title }}</router-link>
@@ -96,8 +96,8 @@ export default {
                 if(item.complete == complete){
                     var dt = item.up_date.toDate()
                     var dt_str = dt.getFullYear() + '-' + (dt.getMonth()+1) + '-' + dt.getDate()
-                    var time = dt.getHours() + ':' + dt.getMinutes()
-                    console.log( item.title +', ' + item.complete + ',' +  dt_str +' ' +time )
+                    //var time = dt.getHours() + ':' + dt.getMinutes()
+                    //console.log( item.title +', ' + item.complete + ',' +  dt_str +' ' +time )
                     items.push({
                         id : doc.id,
                         title : item.title,
